@@ -1,0 +1,15 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  align-items: center;
+  margin-left: 230px;
+}
+
+.wrapper__tickets-list {
+  width: 502px;
+  height: 184px;
+  margin-bottom: 20px;
+  box-shadow: 1px 1px 12px 3px rgba(34, 60, 80, 0.2);
+}
+

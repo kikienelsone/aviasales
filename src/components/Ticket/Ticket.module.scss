@@ -1,0 +1,19 @@
+.wrapper{
+  display: flex;
+  justify-content: space-around;
+}
+
+.price {
+  margin-top: 20px;
+  color: #2196f3;
+  font-size: 24px;
+  margin-left: -115px;
+  justify-items: self-start;
+}
+
+.carrier {
+  margin-top: 20px;
+  color: darkgray;
+  font-size: 24px;
+  margin-right: -110px;
+}
