@@ -1,0 +1,18 @@
+.wrapper{
+  margin-top: -33px;
+  padding-bottom: 30px;
+  display: flex;
+  justify-content: end;
+
+}
+
+.button{
+  min-height: 55px;
+  min-width: 168px;
+  border: 1px solid lightgray;
+  border-radius: 2px;
+
+}
+.button:focus{
+  background-color: #2196f3;
+}

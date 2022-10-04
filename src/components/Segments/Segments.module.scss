@@ -1,0 +1,12 @@
+.list{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.item{
+  list-style: none;
+}
+
+.duration, .destination, .stops{
+  color: #A0B0B9;
+}
