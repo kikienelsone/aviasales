@@ -33,8 +33,9 @@ export const CheckBox: React.FC<CheckBoxProps> = ({ name, getStopsCheck, parentC
   }, [parentCheck]);
 
   return (
-    <label>
+    <label className={checkBox.wrapper}>
       <input
+        className={checkBox.input}
         type="checkbox"
         onChange={(event) => {
           isActive(event.target.checked);

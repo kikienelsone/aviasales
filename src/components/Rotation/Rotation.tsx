@@ -6,8 +6,13 @@ import { getStops, setStops } from '../../store/FilterSlice';
 
 import rotation from './Rotation.module.scss';
 
+interface StopsInterface {
+  name: string;
+  id: number;
+}
+
 export const Rotation: React.FC = () => {
-  const stops = [
+  const stops: StopsInterface[] = [
     { name: 'no stop', id: 0 },
     { name: 'one stop', id: 1 },
     { name: 'two stops', id: 2 },
@@ -42,6 +47,7 @@ export const Rotation: React.FC = () => {
       <h4 className={rotation.title}>Stops</h4>
       <label>
         <input
+          className={rotation.input}
           type="checkbox"
           onChange={(event) => {
             handleCheck(event.target.checked);

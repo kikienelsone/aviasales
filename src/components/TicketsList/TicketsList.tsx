@@ -31,7 +31,7 @@ const TicketsList: React.FC = () => {
           );
         })
       ) : (
-        <Alert message="OOPS" description="No flights found matching your filters" type="info" />
+        <Alert message="OOPS" description="You're not flying anywhere today" type="info" />
       )}
       {button}
     </ul>

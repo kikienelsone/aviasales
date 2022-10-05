@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Alert, Spin } from 'antd';
 
 import { getSearchId } from '../../services/Requests';
 import { useAppDispatch, useAppSelector } from '../../hook/hook';
@@ -11,6 +12,7 @@ import img from './Logo.png';
 
 const App: React.FC = () => {
   const dispatch = useAppDispatch();
+  const { status } = useAppSelector((totalState) => totalState.filterSlice);
 
   useEffect(() => {
     getSearchId().then(() => dispatch(getTickets()));
@@ -21,7 +23,16 @@ const App: React.FC = () => {
         <img className={app.img} src={img} alt="logo" />
       </div>
       <div className={app.content}>
-        <Rotation />
+        {status === true ? (
+          <div className="example">
+            <Spin tip="All tickets is coming...">
+              <Alert className={app.loader} />
+            </Spin>
+          </div>
+        ) : null}
+        <div>
+          <Rotation />
+        </div>
         <TicketsList />
       </div>
     </div>

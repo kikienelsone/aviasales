@@ -2,24 +2,44 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { TicketsDataProps } from '../components/interfaces/TicketsDataProps';
 
+// eslint-disable-next-line import/namespace
 import { getTickets } from './AsyncThunkRequests';
 interface FilterData {
   data: [] | TicketsDataProps[];
   filterData: [] | TicketsDataProps[];
   limitData: number;
   checkBoxData: [];
+  status: boolean;
 }
 const initialState: FilterData = {
   data: [],
   filterData: [],
   checkBoxData: [],
   limitData: 5,
+  status: false,
 };
 
 export const filterSlice = createSlice({
   name: 'filterSlice',
   initialState,
   reducers: {
+    setLoading: (state) => {
+      state.status = true;
+    },
+
+    stopLoading: (state) => {
+      state.status = false;
+    },
+
+    plus(state) {
+      state.limitData += 5;
+    },
+
+    addTickets(state, action) {
+      const tickets = action.payload.tickets;
+      state.data = [...state.data, ...tickets];
+    },
+
     showTickets(state) {
       state.filterData = state.filterData.slice(state.limitData);
     },
@@ -65,15 +85,37 @@ export const filterSlice = createSlice({
       });
     },
   },
-  extraReducers: (builder) => {
-    builder.addCase(getTickets.fulfilled, (state, action) => {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      state.data = action.payload;
-      console.log(state.data);
-    });
+  // extraReducers: (builder) => {
+  //   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  //   // @ts-ignore
+  //   builder.addCase(getTickets.fulfilled, (state, action) => {
+  //     state.data = action.payload;
+  //   });
+  // },
+  extraReducers: {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    [getTickets.pending]: (state: any) => {
+      state.status = false;
+      state.error = null;
+    },
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    // [getTickets.fulfilled]: (state: any, action: any) => {
+    //   state.status = 'resolved';
+    //   state.tikets = action.payload;
+    // },
   },
 });
 export default filterSlice.reducer;
-export const { setStops, showTickets, getStops, mostOptimalTickets, mostFasterTickets, mostCheapTickets } =
-  filterSlice.actions;
+export const {
+  setStops,
+  stopLoading,
+  setLoading,
+  plus,
+  addTickets,
+  getStops,
+  mostOptimalTickets,
+  mostFasterTickets,
+  mostCheapTickets,
+} = filterSlice.actions;

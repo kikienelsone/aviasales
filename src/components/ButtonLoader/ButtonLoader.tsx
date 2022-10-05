@@ -1,14 +1,17 @@
 import React from 'react';
 
 import { useAppDispatch } from '../../hook/hook';
-import { showTickets } from '../../store/FilterSlice';
+import { plus } from '../../store/FilterSlice';
 
+import button from './ButtonLoader.module.scss';
 export const ButtonLoader: React.FC = () => {
   const dispatch = useAppDispatch();
 
   return (
     <label>
-      <button onClick={() => dispatch(showTickets())}>show 5 more tickets</button>
+      <button className={button.wrapper} onClick={() => dispatch(plus())}>
+        show 5 more tickets
+      </button>
     </label>
   );
 };
