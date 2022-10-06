@@ -11,7 +11,6 @@ interface CheckBoxProps {
 
 interface GetStopsCheckProps {
   id: number;
-  name: string;
   isCheck: boolean | ((prevState: boolean) => boolean);
 }
 
@@ -22,7 +21,6 @@ export const CheckBox: React.FC<CheckBoxProps> = ({ name, getStopsCheck, parentC
     setCheck(event);
     getStopsCheck({
       id: id,
-      name: name,
       isCheck: event,
     });
   };

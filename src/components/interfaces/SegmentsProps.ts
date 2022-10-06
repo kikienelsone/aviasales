@@ -3,5 +3,5 @@ export interface SegmentsProps {
   destination: string;
   duration: number;
   origin: string;
-  stops: string[] | [];
+  stops: string[];
 }

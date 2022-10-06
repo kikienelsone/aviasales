@@ -1,7 +1,6 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-import { addTickets, filterSlice, setLoading, stopLoading } from './FilterSlice';
+import { getAllTickets, filterSlice, setLoading, stopLoading } from './FilterSlice';
 
 // export const getTickets = createAsyncThunk('data/getTickets', async () => {
 //   for (let i = 0; i < 27; i++) {
@@ -17,8 +16,6 @@ import { addTickets, filterSlice, setLoading, stopLoading } from './FilterSlice'
 //   }
 // });
 // export const getTickets = createAsyncThunk('data/getTickets', async (_, { dispatch, getState }) => {
-//   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-//   // @ts-ignore
 //   const { data } = getState();
 //   const arrData: any[] = [];
 //   for (let i = 0; i < 25; i++) {
@@ -42,16 +39,16 @@ export const getTickets = () => {
     for (let i = 0; i < 50; i++) {
       try {
         const res = await axios.get(`https://aviasales-test-api.kata.academy/tickets?searchId=${ls}`);
+        console.log(res.data);
         if (res.status == 500) {
           throw new Error('Server Error!');
         }
-        console.log(res.data);
         if (res.data.stop === true) {
           dispatch(stopLoading());
           break;
         }
         dispatch(setLoading());
-        dispatch(addTickets(res.data));
+        dispatch(getAllTickets(res.data));
       } catch (e) {
         console.log(e);
       }

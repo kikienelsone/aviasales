@@ -19,18 +19,14 @@ export const Rotation: React.FC = () => {
     { name: 'three stops', id: 3 },
   ];
   const [check, setCheck] = useState(false);
-  const [stopsData, setStopsData] = useState([]);
+  const [stopsData, setStopsData] = useState<number[]>([]);
 
   useEffect(() => {
     return stopsData.length === stops.length ? setCheck(true) : setCheck(false);
   }, [stops.length, stopsData]);
   const dispatch = useAppDispatch();
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  function getStopsCheck({ id, isCheck }) {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
+  function getStopsCheck({ id, isCheck }: { id: number; isCheck: boolean | ((prevState: boolean) => boolean) }) {
     setStopsData(isCheck ? (prev) => [...prev, id] : (prev) => prev.filter((item) => item !== id));
     dispatch(setStops(id));
     dispatch(getStops());
@@ -45,7 +41,7 @@ export const Rotation: React.FC = () => {
   return (
     <div className={rotation.wrapper}>
       <h4 className={rotation.title}>Stops</h4>
-      <label>
+      <label className={rotation.label}>
         <input
           className={rotation.input}
           type="checkbox"
@@ -57,7 +53,7 @@ export const Rotation: React.FC = () => {
         All stops
       </label>
       {stops.map((item) => (
-        <label key={item.id}>
+        <label key={item.id} className={rotation.label}>
           <CheckBox
             id={item.id}
             name={item.name}

@@ -1,14 +1,12 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { TicketsDataProps } from '../components/interfaces/TicketsDataProps';
 
-// eslint-disable-next-line import/namespace
-import { getTickets } from './AsyncThunkRequests';
 interface FilterData {
-  data: [] | TicketsDataProps[];
-  filterData: [] | TicketsDataProps[];
+  data: TicketsDataProps[];
+  filterData: TicketsDataProps[];
   limitData: number;
-  checkBoxData: [];
+  checkBoxData: number[];
   status: boolean;
 }
 const initialState: FilterData = {
@@ -35,25 +33,19 @@ export const filterSlice = createSlice({
       state.limitData += 5;
     },
 
-    addTickets(state, action) {
-      const tickets = action.payload.tickets;
-      state.data = [...state.data, ...tickets];
+    getAllTickets(state, action) {
+      const data = action.payload.tickets;
+      state.data = [...state.data, ...data];
     },
 
-    showTickets(state) {
-      state.filterData = state.filterData.slice(state.limitData);
-    },
+    // showTickets(state) {
+    //   state.filterData = state.filterData.slice(state.limitData);
+    // },
 
-    setStops(state, action: { type: string; payload: number }) {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
+    setStops(state, action: PayloadAction<number>) {
       if (state.checkBoxData.includes(action.payload)) {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
         state.checkBoxData = state.checkBoxData.filter((item) => item !== action.payload);
       } else {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
         state.checkBoxData.push(action.payload);
       }
     },
@@ -76,12 +68,11 @@ export const filterSlice = createSlice({
       state.filterData = [];
     },
 
-    getStops(state) {
+    getStops(state: FilterData) {
       state.filterData = state.data.filter((item) => {
-        const stops: number = item.segments[0].stops.length;
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        return state.checkBoxData.includes(stops);
+        const stops: string[] = item.segments[0].stops;
+        const count = stops.length;
+        return state.checkBoxData.includes(count);
       });
     },
   },
@@ -95,10 +86,9 @@ export const filterSlice = createSlice({
   extraReducers: {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    [getTickets.pending]: (state: any) => {
-      state.status = false;
-      state.error = null;
-    },
+    // [getTickets.pending]: (state: FilterData) => {
+    //   state.status = false;
+    // },
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     // [getTickets.fulfilled]: (state: any, action: any) => {
@@ -113,7 +103,7 @@ export const {
   stopLoading,
   setLoading,
   plus,
-  addTickets,
+  getAllTickets,
   getStops,
   mostOptimalTickets,
   mostFasterTickets,

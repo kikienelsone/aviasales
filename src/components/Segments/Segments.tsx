@@ -3,20 +3,13 @@ import React from 'react';
 import { SegmentsProps } from '../interfaces/SegmentsProps';
 
 import segment from './Segments.module.scss';
+import { date } from './ConvertDate';
 
 interface SegmentsItemProps {
   segments: SegmentsProps[];
 }
 
 const Segments: React.FC<SegmentsItemProps> = ({ segments }) => {
-  const endDur = new Date(segments[0].date);
-  endDur.setHours(endDur.getHours() + Math.floor(segments[1].duration / 60));
-  endDur.setMinutes(endDur.getMinutes() + Math.ceil(((segments[1].duration % 60) * 60) / 100));
-
-  const endOrigin = new Date(segments[0].date);
-  endOrigin.setHours(endOrigin.getHours() + Math.floor(segments[0].duration / 60));
-  endOrigin.setMinutes(endOrigin.getMinutes() + Math.ceil(((segments[0].duration % 60) * 60) / 100));
-
   return (
     <div className={segment.wrapper}>
       <ul className={segment.list}>
@@ -27,10 +20,7 @@ const Segments: React.FC<SegmentsItemProps> = ({ segments }) => {
                 <p className={segment.destination}>
                   {item.origin}-{item.destination}
                 </p>
-                <p>
-                  {new Date(item.date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} -
-                  {endOrigin.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                </p>
+                <p>{date(item.date, item.duration)}</p>
               </li>
               <li className={segment.item}>
                 <p className={segment.duration}>duration</p>
