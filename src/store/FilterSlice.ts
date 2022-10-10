@@ -75,26 +75,6 @@ export const filterSlice = createSlice({
         return state.checkBoxData.includes(count);
       });
     },
-    // extraReducers: (builder) => {
-    //   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    //   // @ts-ignore
-    //   builder.addCase(getTickets.fulfilled, (state, action) => {
-    //     state.data = action.payload;
-    //   });
-    // },
-    // extraReducers: {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    // [getTickets.pending]: (state: FilterData) => {
-    //   state.status = false;
-    // },
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    // [getTickets.fulfilled]: (state: any, action: any) => {
-    //   state.status = 'resolved';
-    //   state.tikets = action.payload;
-    // },
-    // },
   },
 });
 export default filterSlice.reducer;
