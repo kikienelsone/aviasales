@@ -9,7 +9,7 @@
   margin-left: 324px;
   margin-right: 0;
   margin-top: 60px;
-
+  background-color: white;
 }
 .title{
   text-align: center;
@@ -40,6 +40,11 @@
 .label input[type=checkbox]:checked {
   background: url(326572_check_icon.svg) 2px 2px no-repeat;
 }
+//
+//.label:hover{
+//  background-color: lightblue;
+//  border-radius: 3px;
+//}
 
 .input{
   margin-right: 10px;

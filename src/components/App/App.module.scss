@@ -1,5 +1,6 @@
 body{
   margin: 0;
+  background-color: #E5E5E5;
 }
 
 .wrapper{
@@ -9,7 +10,7 @@ body{
 }
 
 .spin{
-  margin-top: 30px;
+  margin-top: -30px;
 }
 
 .img{
@@ -20,7 +21,7 @@ body{
 }
 
 .loader{
-  visibility: hidden;
+  display: none;
   padding: 0;
   margin: auto;
   width: 300px;

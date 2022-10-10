@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Checkbox } from 'antd';
 
 import checkBox from './CheckBox.module.scss';
 interface CheckBoxProps {
@@ -32,16 +33,14 @@ export const CheckBox: React.FC<CheckBoxProps> = ({ name, getStopsCheck, parentC
 
   return (
     <label htmlFor="checkbox" className={checkBox.wrapper}>
-      <input
-        id="checkbox"
-        className={checkBox.input}
-        type="checkbox"
+      <Checkbox
+        checked={check}
         onChange={(event) => {
           isActive(event.target.checked);
         }}
-        checked={check}
-      />
-      {name}
+      >
+        {name}
+      </Checkbox>
     </label>
   );
 };

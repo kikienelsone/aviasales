@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Checkbox } from 'antd';
 
 import { CheckBox } from '../CheckBox/CheckBox';
 import { useAppDispatch } from '../../hook/hook';
@@ -42,15 +43,14 @@ export const Rotation: React.FC = () => {
     <div className={rotation.wrapper}>
       <h4 className={rotation.title}>Stops</h4>
       <label className={rotation.label}>
-        <input
-          className={rotation.input}
-          type="checkbox"
+        <Checkbox
+          checked={check}
           onChange={(event) => {
             handleCheck(event.target.checked);
           }}
-          checked={check}
-        />
-        All stops
+        >
+          All stops
+        </Checkbox>
       </label>
       {stops.map((item) => (
         <div key={item.id} className={rotation.label}>
