@@ -8,6 +8,10 @@ body{
   margin: 0;
 }
 
+.spin{
+  margin-top: 30px;
+}
+
 .img{
   margin-top: 20px;
   height: 110px;
@@ -16,6 +20,7 @@ body{
 }
 
 .loader{
+  visibility: hidden;
   padding: 0;
   margin: auto;
   width: 300px;

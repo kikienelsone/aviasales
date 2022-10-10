@@ -25,7 +25,7 @@ const App: React.FC = () => {
       <div className={app.content}>
         {status === true ? (
           <div className="example">
-            <Spin tip="All tickets is coming...">
+            <Spin className={app.spin} tip="All tickets is coming...">
               <Alert className={app.loader} />
             </Spin>
           </div>
