@@ -53,7 +53,7 @@ export const Rotation: React.FC = () => {
         All stops
       </label>
       {stops.map((item) => (
-        <label key={item.id} className={rotation.label}>
+        <div key={item.id} className={rotation.label}>
           <CheckBox
             id={item.id}
             name={item.name}
@@ -61,7 +61,7 @@ export const Rotation: React.FC = () => {
             getStopsCheck={getStopsCheck}
             childData={stopsData.length}
           />
-        </label>
+        </div>
       ))}
     </div>
   );

@@ -31,8 +31,9 @@ export const CheckBox: React.FC<CheckBoxProps> = ({ name, getStopsCheck, parentC
   }, [parentCheck]);
 
   return (
-    <label className={checkBox.wrapper}>
+    <label htmlFor="checkbox" className={checkBox.wrapper}>
       <input
+        id="checkbox"
         className={checkBox.input}
         type="checkbox"
         onChange={(event) => {

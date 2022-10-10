@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { getAllTickets, filterSlice, setLoading, stopLoading } from './FilterSlice';
+import { getAllTickets, setLoading, stopLoading } from './FilterSlice';
 
 // export const getTickets = createAsyncThunk('data/getTickets', async () => {
 //   for (let i = 0; i < 27; i++) {
